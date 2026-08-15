@@ -194,7 +194,6 @@ img { max-width: 100%; display: block; }
   display: flex;
   min-height: 100vh;
   position: relative;
-  z-index: 1;
 }
 
 /* ============================================================
@@ -209,7 +208,7 @@ img { max-width: 100%; display: block; }
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 200;
+  z-index: 300;
   transition: transform var(--t-med);
   border-right: 1px solid rgba(255,255,255,0.04);
 }
@@ -2564,9 +2563,9 @@ img { max-width: 100%; display: block; }
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(28,26,20,0.5);
-  backdrop-filter: blur(2px);
-  z-index: 150;
+  background: rgba(28,26,20,0.45);
+  z-index: 250;
+  transition: opacity var(--t-fast);
 }
 
 .sidebar-overlay.active { display: block; }
