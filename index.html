@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TKA SOSIOLOGI — Interactive Study Hub</title>
+  <meta name="description" content="Panduan belajar Sosiologi berbasis kisi-kisi TKA dengan materi lengkap, flashcard, contoh soal, dan latihan interaktif." />
+
+  <!-- Google Fonts: DM Serif Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="light">
+
+  <!-- Sidebar Overlay (Mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="app-layout">
+
+    <!-- ══════════════════════════════════
+         SIDEBAR NAV (Desktop & Drawer)
+         ══════════════════════════════════ -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-box">
+          <div class="logo-icon-wrap">
+            <i data-lucide="book-open-check"></i>
+          </div>
+          <div class="logo-text">
+            <span class="logo-title">TKA SOSIOLOGI</span>
+            <span class="logo-subtitle">Study Hub</span>
+          </div>
+        </div>
+        <button class="icon-btn mobile-close-sidebar" id="closeSidebarBtn" aria-label="Tutup Menu">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <!-- Progress Strip -->
+      <div class="sidebar-user-progress">
+        <div class="progress-label-sm">
+          <span>Progress Total</span>
+          <span id="sidebarProgressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="sidebarProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="nav-menu">
+        <span class="nav-section-label">Utama</span>
+        <a href="#dashboard" class="nav-item active" data-view="dashboard">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#materi" class="nav-item" data-view="materi">
+          <i data-lucide="book-marked"></i>
+          <span>Materi (32 Topik)</span>
+        </a>
+
+        <span class="nav-section-label">Latihan</span>
+        <a href="#flashcard" class="nav-item" data-view="flashcard">
+          <i data-lucide="layers"></i>
+          <span>Flashcard</span>
+        </a>
+        <a href="#contoh-soal" class="nav-item" data-view="contoh-soal">
+          <i data-lucide="file-text"></i>
+          <span>Contoh Soal</span>
+        </a>
+        <a href="#latihan-soal" class="nav-item" data-view="latihan-soal">
+          <i data-lucide="brain-circuit"></i>
+          <span>Latihan Soal</span>
+        </a>
+        <a href="#quick-review" class="nav-item" data-view="quick-review">
+          <i data-lucide="zap"></i>
+          <span>Quick Review</span>
+        </a>
+
+        <span class="nav-section-label">Rekap</span>
+        <a href="#progress" class="nav-item" data-view="progress">
+          <i data-lucide="bar-chart-3"></i>
+          <span>Progress Belajar</span>
+        </a>
+        <a href="#bookmarks" class="nav-item" data-view="bookmarks">
+          <i data-lucide="bookmark"></i>
+          <span>Bookmarks</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="theme-toggle" id="themeToggleBtn">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+          <span id="themeToggleText">Mode Terang</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ══════════════════════════════════
+         MAIN WRAPPER
+         ══════════════════════════════════ -->
+    <div class="main-wrapper">
+
+      <!-- TOP HEADER BAR -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="icon-btn mobile-menu-btn" id="openSidebarBtn" aria-label="Buka Menu">
+            <i data-lucide="menu"></i>
+          </button>
+
+          <div class="header-search-trigger" id="openSearchModal">
+            <i data-lucide="search"></i>
+            <span>Cari materi, konsep, atau kata kunci...</span>
+            <span class="search-kbd">Ctrl+K</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="icon-btn theme-quick-toggle" id="quickThemeBtn" title="Ganti Tema">
+            <i data-lucide="moon"></i>
+          </button>
+          <div class="target-badge">
+            <i data-lucide="graduation-cap"></i>
+            <span>SMA XII &bull; TKA Ready</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ══════════════════════════════════
+           VIEW CONTAINERS (SPA)
+           ══════════════════════════════════ -->
+      <main class="content-area">
+
+        <!-- ─────────────────────────────────
+             1. DASHBOARD VIEW
+             ───────────────────────────────── -->
+        <section id="view-dashboard" class="view-panel active">
+
+          <!-- Hero -->
+          <div class="hero-card">
+            <div class="hero-eyebrow">
+              <i data-lucide="sparkles"></i>
+              <span>Interactive Study Hub</span>
+            </div>
+            <h1 class="hero-title">TKA SOSIOLOGI</h1>
+            <p class="hero-subtitle">Belajar, Pahami, Latihan, Kuasai</p>
+            <p class="hero-desc">
+              Panduan belajar Sosiologi berbasis kisi-kisi TKA dengan materi lengkap,
+              flashcard interaktif, contoh soal, dan latihan tanpa backend.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="window.app.navigate('materi')">
+                <i data-lucide="play-circle"></i> Mulai Belajar
+              </button>
+              <button class="btn btn-outline" style="color:#f0ead6;border-color:rgba(255,255,255,0.2);" onclick="window.app.navigate('flashcard')">
+                <i data-lucide="layers"></i> Flashcard
+              </button>
+              <button class="btn btn-outline" style="color:#f0ead6;border-color:rgba(255,255,255,0.2);" onclick="window.app.navigate('latihan-soal')">
+                <i data-lucide="brain-circuit"></i> Latihan Soal
+              </button>
+            </div>
+            <!-- decorative lines -->
+            <div class="hero-deco" aria-hidden="true">
+              <span style="width:80px"></span>
+              <span style="width:120px"></span>
+              <span style="width:60px"></span>
+              <span style="width:100px"></span>
+              <span style="width:70px"></span>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="section-heading" style="margin-bottom:16px;">
+            <h2>Learning Overview</h2>
+            <span class="sh-label">Pencapaian Anda</span>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card s-amber">
+              <div class="stat-icon si-amber"><i data-lucide="book-open"></i></div>
+              <div class="stat-info">
+                <span class="stat-val" id="statMateriCount">30</span>
+                <span class="stat-lbl">Materi Lengkap</span>
+              </div>
+            </div>
+            <div class="stat-card s-plum">
+              <div class="stat-icon si-plum"><i data-lucide="grid"></i></div>
+              <div class="stat-info">
+                <span class="stat-val">8</span>
+                <span class="stat-lbl">Section Utama</span>
+              </div>
+            </div>
+            <div class="stat-card s-sage">
+              <div class="stat-icon si-sage"><i data-lucide="layers"></i></div>
+              <div class="stat-info">
+                <span class="stat-val" id="statFlashcardCount">60+</span>
+                <span class="stat-lbl">Flashcards Interaktif</span>
+              </div>
+            </div>
+            <div class="stat-card s-rose">
+              <div class="stat-icon si-rose"><i data-lucide="help-circle"></i></div>
+              <div class="stat-info">
+                <span class="stat-val" id="statSoalCount">80+</span>
+                <span class="stat-lbl">Contoh &amp; Latihan Soal</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Card -->
+          <div class="card progress-overview-card">
+            <div class="card-header-flex">
+              <div>
+                <h3>Progress Belajar Total</h3>
+                <p class="text-muted">Diperbarui otomatis saat Anda menandai materi selesai</p>
+              </div>
+              <span class="progress-badge-lg" id="dashboardProgressText">0%</span>
+            </div>
+            <div class="progress-bar-lg">
+              <div class="progress-bar-fill" id="dashboardProgressFill" style="width: 0%;"></div>
+            </div>
+            <div class="progress-meta">
+              <span id="dashboardCompletedCount">0 dari 30 Materi Selesai</span>
+              <span id="dashboardBestScore">Skor Latihan Terbaik: —</span>
+            </div>
+          </div>
+
+          <!-- Section Cards -->
+          <div class="section-heading">
+            <h2>Section Materi</h2>
+            <span class="sh-label">8 Section</span>
+          </div>
+          <div class="sections-grid" id="dashboardSectionsGrid">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             2. MATERI VIEW
+             ───────────────────────────────── -->
+        <section id="view-materi" class="view-panel">
+
+          <!-- List View -->
+          <div id="materiListContainer">
+            <div class="page-header">
+              <div>
+                <h1>Materi TKA Sosiologi</h1>
+                <p class="page-header-sub">32 Topik Terstruktur dalam 8 Section Kisi-Kisi Resmi</p>
+              </div>
+              <div class="materi-search-box">
+                <i data-lucide="search"></i>
+                <input type="text" id="materiFilterInput" placeholder="Filter topik atau kata kunci..." />
+              </div>
+            </div>
+
+            <div class="materi-sections-accordion" id="materiAccordionList">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Detail View -->
+          <div id="materiDetailContainer" class="hidden">
+            <div class="detail-top-nav">
+              <button class="btn btn-sm btn-outline" id="backToMateriList">
+                <i data-lucide="arrow-left"></i> Daftar Materi
+              </button>
+              <div class="detail-actions">
+                <button class="btn btn-sm btn-outline" id="toggleBookmarkBtn">
+                  <i data-lucide="bookmark"></i> <span>Bookmark</span>
+                </button>
+                <button class="btn btn-sm btn-success" id="toggleCompleteBtn">
+                  <i data-lucide="check-circle"></i> <span>Tandai Selesai</span>
+                </button>
+              </div>
+            </div>
+
+            <article class="materi-detail-card" id="materiDetailCard">
+              <!-- Rendered dynamically by script.js -->
+            </article>
+
+            <div class="materi-nav-buttons">
+              <button class="btn btn-outline" id="prevMateriBtn">
+                <i data-lucide="chevron-left"></i> <span>Materi Sebelumnya</span>
+              </button>
+              <button class="btn btn-primary" id="nextMateriBtn">
+                <span>Materi Berikutnya</span> <i data-lucide="chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             3. FLASHCARD VIEW
+             ───────────────────────────────── -->
+        <section id="view-flashcard" class="view-panel">
+          <div class="page-header">
+            <div>
+              <h1>Flashcard Interaktif</h1>
+              <p class="page-header-sub">Kuasai konsep & definisi dengan teknik Active Recall</p>
+            </div>
+          </div>
+
+          <div class="filter-tabs" id="flashcardCategoryTabs">
+            <button class="tab-btn active" data-cat="all">Semua Section</button>
+            <button class="tab-btn" data-cat="section-a">Section A</button>
+            <button class="tab-btn" data-cat="section-b">Section B</button>
+            <button class="tab-btn" data-cat="section-c">Section C</button>
+            <button class="tab-btn" data-cat="section-d">Section D</button>
+            <button class="tab-btn" data-cat="section-e">Section E</button>
+            <button class="tab-btn" data-cat="section-f">Section F</button>
+            <button class="tab-btn" data-cat="section-g">Section G</button>
+            <button class="tab-btn" data-cat="section-h">Section H</button>
+          </div>
+
+          <div class="flashcard-stage">
+            <div class="flashcard-container" id="flashcardBox">
+              <div class="flashcard-inner" id="flashcardInner">
+                <div class="flashcard-face flashcard-front">
+                  <span class="fc-badge">PERTANYAAN / ISTILAH</span>
+                  <div class="fc-content" id="fcFrontContent">Pilih kategori untuk memulai</div>
+                  <span class="fc-hint">
+                    <i data-lucide="rotate-cw"></i> Klik atau tekan Space untuk balik kartu
+                  </span>
+                </div>
+                <div class="flashcard-face flashcard-back">
+                  <span class="fc-badge fc-badge-back">JAWABAN &amp; PENJELASAN</span>
+                  <div class="fc-content" id="fcBackContent">Jawaban akan tampil di sini</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fc-controls">
+              <button class="btn btn-outline btn-sm" id="fcPrevBtn"><i data-lucide="arrow-left"></i> Prev</button>
+              <button class="btn btn-primary btn-sm" id="fcFlipBtn"><i data-lucide="refresh-cw"></i> Flip</button>
+              <button class="btn btn-outline btn-sm" id="fcNextBtn">Next <i data-lucide="arrow-right"></i></button>
+              <button class="btn btn-secondary btn-sm" id="fcShuffleBtn"><i data-lucide="shuffle"></i> Acak</button>
+            </div>
+
+            <div class="fc-counter" id="fcCounterText">Card 1 / 1</div>
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             4. CONTOH SOAL VIEW
+             ───────────────────────────────── -->
+        <section id="view-contoh-soal" class="view-panel">
+          <div class="page-header">
+            <div>
+              <h1>Contoh Soal &amp; Pembahasan</h1>
+              <p class="page-header-sub">Pelajari pola soal TKA berbasis fenomena sosial dan analisis opsi</p>
+            </div>
+          </div>
+
+          <div class="contoh-soal-list" id="contohSoalList">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             5. LATIHAN SOAL VIEW
+             ───────────────────────────────── -->
+        <section id="view-latihan-soal" class="view-panel">
+          <div class="page-header">
+            <div>
+              <h1>Simulasi Latihan Soal TKA</h1>
+              <p class="page-header-sub">Uji pemahaman dengan soal analisis kasus interaktif</p>
+            </div>
+          </div>
+
+          <!-- Setup Screen -->
+          <div class="card quiz-setup-card" id="quizSetupCard">
+            <h3><i data-lucide="sliders"></i> Pengaturan Latihan</h3>
+            <p>Pilih tingkat kesulitan dan mode latihan untuk memulai.</p>
+
+            <div class="quiz-options-group">
+              <label>Tingkat Kesulitan:</label>
+              <div class="radio-tabs" id="quizDifficultySelect">
+                <button class="radio-tab active" data-diff="all">Semua Level</button>
+                <button class="radio-tab" data-diff="mudah">Mudah</button>
+                <button class="radio-tab" data-diff="sedang">Sedang</button>
+                <button class="radio-tab" data-diff="sulit">Sulit</button>
+              </div>
+            </div>
+
+            <div class="quiz-options-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="quizTimerCheck" checked />
+                <span>Aktifkan Timer Opsional (15 Menit)</span>
+              </label>
+            </div>
+
+            <div class="high-score-box">
+              <i data-lucide="trophy"></i>
+              <span>Skor Terbaik Anda: <strong id="quizBestScoreVal">0/100</strong></span>
+            </div>
+
+            <button class="btn btn-primary btn-lg" id="startQuizBtn">
+              <i data-lucide="play"></i> Mulai Latihan Sekarang
+            </button>
+          </div>
+
+          <!-- Active Quiz -->
+          <div class="quiz-active-container hidden" id="quizActiveContainer">
+            <div class="quiz-header-bar">
+              <div class="quiz-progress-text" id="quizProgressNum">Soal 1 / 10</div>
+              <div class="quiz-timer" id="quizTimerBox">
+                <i data-lucide="clock"></i>
+                <span id="quizTimerText">15:00</span>
+              </div>
+            </div>
+
+            <div class="quiz-progress-bar">
+              <div class="quiz-progress-fill" id="quizProgressFill" style="width: 10%;"></div>
+            </div>
+
+            <div class="card quiz-question-card">
+              <div class="quiz-diff-badge" id="quizDiffBadge">SEDANG</div>
+              <p class="quiz-question-text" id="quizQuestionText">Teks soal akan muncul di sini...</p>
+
+              <div class="quiz-options-list" id="quizOptionsList">
+                <!-- Rendered by JS -->
+              </div>
+
+              <div class="quiz-pembahasan-box hidden" id="quizPembahasanBox">
+                <h4><i data-lucide="book-open"></i> Pembahasan:</h4>
+                <p id="quizPembahasanText"></p>
+              </div>
+            </div>
+
+            <div class="quiz-footer-actions">
+              <button class="btn btn-outline" id="quizQuitBtn"><i data-lucide="x"></i> Batal</button>
+              <button class="btn btn-primary" id="quizNextBtn" disabled>
+                Soal Berikutnya <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Result Screen -->
+          <div class="quiz-result-container hidden" id="quizResultContainer">
+            <div class="card quiz-result-card">
+              <div class="result-icon"><i data-lucide="award"></i></div>
+              <h2>Hasil Latihan Soal TKA</h2>
+              <div class="score-display">
+                <span class="score-num" id="quizFinalScore">82</span>
+                <span class="score-max">/ 100</span>
+              </div>
+
+              <div class="result-stats-row">
+                <div class="res-stat stat-green">
+                  <span class="res-val" id="quizCorrectCount">0</span>
+                  <span class="res-lbl">Benar</span>
+                </div>
+                <div class="res-stat stat-red">
+                  <span class="res-val" id="quizWrongCount">0</span>
+                  <span class="res-lbl">Salah</span>
+                </div>
+              </div>
+
+              <div class="evaluation-box" id="quizEvaluationBox">
+                <h4><i data-lucide="file-check-2"></i> Evaluasi Kesiapan:</h4>
+                <p id="quizEvalText">Penyelesaian latihan Anda cukup memuaskan.</p>
+              </div>
+
+              <div class="result-actions">
+                <button class="btn btn-primary" id="restartQuizBtn">
+                  <i data-lucide="rotate-ccw"></i> Coba Lagi
+                </button>
+                <button class="btn btn-outline" onclick="window.app.navigate('materi')">
+                  <i data-lucide="book"></i> Review Materi
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             6. QUICK REVIEW VIEW
+             ───────────────────────────────── -->
+        <section id="view-quick-review" class="view-panel">
+          <div class="page-header">
+            <div>
+              <h1>Quick Review — Wajib Hafal</h1>
+              <p class="page-header-sub">Rangkuman formula, perbedaan konsep, dan kata kunci paling sering keluar di TKA</p>
+            </div>
+          </div>
+
+          <div class="quick-review-grid" id="quickReviewGrid">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             7. PROGRESS VIEW
+             ───────────────────────────────── -->
+        <section id="view-progress" class="view-panel">
+          <div class="page-header">
+            <div>
+              <h1>Progress Belajar Sosiologi</h1>
+              <p class="page-header-sub">Pantau penyelesaian 30 materi per section</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Rincian Keterselesaian per Section</h3>
+            <div class="section-progress-list" id="progressSectionList">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ─────────────────────────────────
+             8. BOOKMARKS VIEW
+             ───────────────────────────────── -->
+        <section id="view-bookmarks" class="view-panel">
+          <div class="page-header">
+            <div>
+              <h1>Materi Di-Bookmark</h1>
+              <p class="page-header-sub">Daftar materi favorit yang ingin dipelajari ulang</p>
+            </div>
+          </div>
+
+          <div class="bookmarks-grid" id="bookmarksGrid">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="app-footer">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <strong>TKA SOSIOLOGI</strong>
+            <p>"Belajar konsep. Pahami kasus. Kuasai TKA."</p>
+          </div>
+          <div class="footer-meta">
+            30 Materi &bull; Flashcard &bull; Latihan &bull; Progress Tracking
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- MOBILE BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+    <a href="#dashboard" class="b-nav-item active" data-view="dashboard">
+      <i data-lucide="layout-dashboard"></i>
+      <span>Home</span>
+    </a>
+    <a href="#materi" class="b-nav-item" data-view="materi">
+      <i data-lucide="book-marked"></i>
+      <span>Materi</span>
+    </a>
+    <a href="#flashcard" class="b-nav-item" data-view="flashcard">
+      <i data-lucide="layers"></i>
+      <span>Cards</span>
+    </a>
+    <a href="#latihan-soal" class="b-nav-item" data-view="latihan-soal">
+      <i data-lucide="brain-circuit"></i>
+      <span>Latihan</span>
+    </a>
+    <a href="#quick-review" class="b-nav-item" data-view="quick-review">
+      <i data-lucide="zap"></i>
+      <span>Review</span>
+    </a>
+  </nav>
+
+  <!-- SEARCH MODAL OVERLAY -->
+  <div class="search-modal-overlay hidden" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="search-modal-header">
+        <i data-lucide="search"></i>
+        <input type="text" id="globalSearchInput" placeholder="Cari konsep, materi, atau kata kunci..." />
+        <button class="icon-btn" id="closeSearchModal"><i data-lucide="x"></i></button>
+      </div>
+      <div class="search-modal-results" id="globalSearchResults">
+        <p class="search-placeholder">Ketik kata kunci untuk mencari di 30 materi...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
