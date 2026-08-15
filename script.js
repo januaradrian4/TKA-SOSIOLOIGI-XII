@@ -985,6 +985,14 @@ document.addEventListener('DOMContentLoaded', () => {
       el.closeSearchModal.addEventListener('click', () => el.searchModalOverlay.classList.add('hidden'));
     }
 
+    if (el.searchModalOverlay) {
+      el.searchModalOverlay.addEventListener('click', (e) => {
+        if (e.target === el.searchModalOverlay) {
+          el.searchModalOverlay.classList.add('hidden');
+        }
+      });
+    }
+
     if (el.globalSearchInput) {
       el.globalSearchInput.addEventListener('input', (e) => searchGlobal(e.target.value));
     }

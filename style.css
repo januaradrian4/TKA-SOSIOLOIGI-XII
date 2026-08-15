@@ -438,9 +438,7 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 .top-header {
   height: var(--header-h);
-  background-color: rgba(254,252,248,0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-soft);
   padding: 0 28px;
   display: flex;
@@ -453,7 +451,7 @@ img { max-width: 100%; display: block; }
 }
 
 [data-theme="dark"] .top-header {
-  background-color: rgba(30,27,18,0.88);
+  background-color: var(--bg-surface);
 }
 
 .header-left {
@@ -2430,8 +2428,7 @@ img { max-width: 100%; display: block; }
 .search-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(28,26,20,0.6);
-  backdrop-filter: blur(6px);
+  background: rgba(18,16,12,0.75);
   z-index: 500;
   display: flex;
   align-items: flex-start;
@@ -2557,18 +2554,12 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================================
-   SIDEBAR OVERLAY (Mobile)
+   SIDEBAR OVERLAY (Mobile Only)
    ============================================================ */
 .sidebar-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(28,26,20,0.45);
-  z-index: 250;
-  transition: opacity var(--t-fast);
+  display: none !important;
+  pointer-events: none !important;
 }
-
-.sidebar-overlay.active { display: block; }
 
 /* ============================================================
    RESPONSIVE — TABLET
@@ -2585,6 +2576,19 @@ img { max-width: 100%; display: block; }
    RESPONSIVE — MOBILE
    ============================================================ */
 @media (max-width: 768px) {
+  .sidebar-overlay {
+    display: none !important;
+    position: fixed;
+    inset: 0;
+    background: rgba(18,16,12,0.5);
+    z-index: 250;
+    pointer-events: auto !important;
+  }
+
+  .sidebar-overlay.active {
+    display: block !important;
+  }
+
   /* Show hamburger & bottom nav, hide sidebar by default */
   .sidebar {
     transform: translateX(-100%);
