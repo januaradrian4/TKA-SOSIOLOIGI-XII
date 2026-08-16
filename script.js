@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <p class="qc-question">${qIdx + 1}. ${qc.question}</p>
               <div class="qc-options" id="qcOpts-${qIdx}">
                 ${(qc.options || []).map((opt, oIdx) => `
-                  <button class="qc-opt-btn" onclick="window.app.checkQuickCheckAnswer(${qIdx}, ${oIdx}, ${qc.answerIndex || 0})">
+                  <button class="qc-opt-btn" onclick="window.app.checkQuickCheckAnswer(${qIdx}, ${oIdx}, ${qc.answerIndex ?? 0})">
                     ${opt}
                   </button>
                 `).join('')}
