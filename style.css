@@ -21,45 +21,45 @@
 
   --border-color:    #e8e0cc;
   --border-soft:     #ede6d2;
-  --border-focus:    #c8914a;
+  --border-focus:    #965b16;
 
   /* ── TEXT ── */
   --text-main:       #2a2316;
-  --text-muted:      #7a6e58;
-  --text-light:      #a99d87;
+  --text-muted:      #6e624c;
+  --text-light:      #948770;
   --text-white:      #fefcf8;
   --text-ink:        #1a1610;
 
-  /* ── BRAND ACCENTS (Warm Academic) ── */
-  --accent-primary:  #c8914a;
-  --accent-primary-h:#b07a35;
-  --accent-primary-l:#fef3e2;
-  --accent-primary-m:rgba(200,145,74,0.12);
+  /* ── BRAND ACCENTS (Warm Academic - High Contrast Light Mode) ── */
+  --accent-primary:  #965b16;
+  --accent-primary-h:#7e4a0d;
+  --accent-primary-l:#fdf3e3;
+  --accent-primary-m:rgba(150,91,22,0.12);
 
-  --accent-sage:     #6a8f6e;
+  --accent-sage:     #4a734e;
   --accent-sage-l:   #eef4ef;
-  --accent-sage-m:   rgba(106,143,110,0.12);
+  --accent-sage-m:   rgba(74,115,78,0.12);
 
-  --accent-rose:     #c4776a;
+  --accent-rose:     #ab4e3f;
   --accent-rose-l:   #fdf0ee;
-  --accent-rose-m:   rgba(196,119,106,0.12);
+  --accent-rose-m:   rgba(171,78,63,0.12);
 
   --accent-ink:      #4a5568;
   --accent-ink-l:    #eef0f4;
   --accent-ink-m:    rgba(74,85,104,0.12);
 
-  --accent-honey:    #d4a853;
+  --accent-honey:    #a06c15;
   --accent-honey-l:  #fdf5e0;
 
-  --accent-plum:     #7b5ea7;
+  --accent-plum:     #6b4998;
   --accent-plum-l:   #f2eefc;
-  --accent-plum-m:   rgba(123,94,167,0.12);
+  --accent-plum-m:   rgba(107,73,152,0.12);
 
   /* ── SEMANTIC ── */
-  --color-success:   #5a8a60;
+  --color-success:   #46704b;
   --color-success-l: #edf6ee;
-  --color-warning:   #c8914a;
-  --color-danger:    #c4776a;
+  --color-warning:   #965b16;
+  --color-danger:    #ab4e3f;
   --color-danger-l:  #fdf0ee;
 
   /* ── TYPOGRAPHY ── */
@@ -696,6 +696,23 @@ img { max-width: 100%; display: block; }
   border-color: var(--accent-primary);
   color: var(--accent-primary);
   background: var(--accent-primary-l);
+}
+
+/* Hero Outline (For dark hero card background) */
+.btn-hero-outline {
+  border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+  color: #fefcf8 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-hero-outline:hover {
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 /* Success */
